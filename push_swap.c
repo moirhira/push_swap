@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "includes/libft/libft.h"
 #include "push_swap.h"
+#include "operations.c"
 
 
 
@@ -19,15 +20,21 @@ t_node *push(char *str, t_stack *stacka)
     return (stacka->top);
 }
 
-t_node  *show_nbrs(t_stack *stack)
+t_node  *show_nbrs(t_stack *stack, int f)
 {
+    t_node *temp;
+    temp = stack->top;
     while (stack->top)
     {
         printf("%d\n", stack->top->value);
         stack->top = stack->top->next;
     }
+    stack->top = temp;
     printf("=\n");
-    printf("a\n");
+    if (f == 0)
+        printf("b\n");
+    else
+        printf("a\n");
 }
 
 void handel_args(int ac, char *av[], t_stack *stacka)
@@ -86,8 +93,6 @@ void sort_alg(t_stack *stacka, t_stack *stackb)
         }
         curente = curente->next;
     }
-    printf("size of the stack :%d\n",stacka->size);
-    show_nbrs(stacka);
 }
 
 int main(int ac, char *av[])
@@ -105,10 +110,8 @@ int main(int ac, char *av[])
     if (ac >= 2)
     {
         handel_args(ac ,av, stacka);
-        printf("%d", stacka->top->value);
-        // show_nbrs(stacka);
-        // sort_alg(stacka,stackb);
-        // show_nbrs(stacka);
+        sort_alg(stacka, stackb);
+        show_nbrs(stacka,1);
     }
     else
     {
