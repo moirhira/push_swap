@@ -43,7 +43,7 @@ void handel_args(int ac, char *av[], t_stack *stacka)
     char **nums;
     while (k < ac)
     {
-         nums= ft_split(av[k], ' ');
+        nums = ft_split(av[k], ' ');
         int i = 0;
 
         while (nums[i])
@@ -70,30 +70,78 @@ void handel_args(int ac, char *av[], t_stack *stacka)
     }
 }
 
-void sort_alg(t_stack *stacka, t_stack *stackb)
+// void sort_alg(t_stack *stacka, t_stack *stackb)
+// {
+//     t_node *curente = stacka->top;
+//     t_node *next ;
+//     while (curente)
+//     {
+//         next = curente->next;
+//         while (next)
+//         {
+//             if (curente->value > next->value)
+//             {
+//                 int tmp;
+//                 int j;
+//                 printf("find %d\n",j);
+//                 j++;
+//                 tmp = curente->value;
+//                 curente->value = next->value;
+//                 next->value = tmp;
+//             }
+//             next = next->next;
+//         }
+//         curente = curente->next;
+//     }
+// }
+
+int sortone(t_stack *stacka, t_stack *stackb)
 {
-    t_node *curente = stacka->top;
-    t_node *next ;
-    while (curente)
+    int i = 0;
+    while (i < stacka->size - 1 )
     {
-        next = curente->next;
-        while (next)
+        t_node *current = stacka->top;
+        int max_value = current->value;
+        int ctr = 1;
+        while(current)
         {
-            if (curente->value > next->value)
-            {
-                int tmp;
-                int j;
-                printf("find %d\n",j);
-                j++;
-                tmp = curente->value;
-                curente->value = next->value;
-                next->value = tmp;
-            }
-            next = next->next;
+            if (max_value < current->value)
+                max_value = current->value;
+            current = current->next;
         }
-        curente = curente->next;
+        current = stacka->top;
+        while (current->value != max_value)
+        {
+            ctr++;
+            current = current->next;
+        }
+        while (ctr--)
+            ra(stacka);
+        rra(stacka);
+        pb(stacka, stackb);
+        i++;
+    }
+    pb(stacka,stackb);
+}
+
+
+void insertionsort(t_stack *stacka, t_stack *stackb)
+{
+    pb(stacka,stackb);
+    int i = 0;
+    while (i < stacka->size)
+    {
+       if (stacka->top->value < stackb->top->value)
+        {
+            pb(stacka,stackb);
+        }
+        else
+        {
+            
+        }
     }
 }
+
 
 int main(int ac, char *av[])
 {
@@ -110,8 +158,11 @@ int main(int ac, char *av[])
     if (ac >= 2)
     {
         handel_args(ac ,av, stacka);
-        sort_alg(stacka, stackb);
-        show_nbrs(stacka,1);
+        // show_nbrs(stacka, 1);
+        
+        sortone(stacka, stackb);
+        printf("==========after=======\n");
+        show_nbrs(stackb, 0);
     }
     else
     {

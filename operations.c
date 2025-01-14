@@ -72,6 +72,7 @@ void pb(t_stack *stacka, t_stack *stackb)
         tempa->next = stackb->top;
         stackb->top = tempa;
     }
+    printf("pb\n");
 }
 
 void ra(t_stack *stacka)
@@ -90,6 +91,7 @@ void ra(t_stack *stacka)
     }
     ptr->next = tempa;
     ptr->next->next = NULL;
+    printf("ra\n");
 }
 
 void rb(t_stack *stackb)
@@ -127,6 +129,7 @@ void rra(t_stack *stacka)
         ptr->next = NULL;
         last_elm->next = stacka->top;
         stacka->top = last_elm;
+        printf("rra\n");
     }
     else
         exit(1);
