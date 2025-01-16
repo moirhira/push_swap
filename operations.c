@@ -75,11 +75,11 @@ void pb(t_stack *stacka, t_stack *stackb)
     printf("pb\n");
 }
 
-void ra(t_stack *stacka)
+int ra(t_stack *stacka)
 {
     if (stacka->size < 2)
     {
-        exit(1);
+        return (-1);
     }
     t_node *tempa, *ptr;
     tempa = stacka->top;
