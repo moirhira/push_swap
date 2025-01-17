@@ -1,9 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "includes/libft/libft.h"
-#include "push_swap.h"
-#include "operations.c"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moirhira <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 11:42:13 by moirhira          #+#    #+#             */
+/*   Updated: 2025/01/17 11:42:15 by moirhira         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 
 t_node *push(char *str, t_stack *stacka)
@@ -70,155 +77,6 @@ void handel_args(int ac, char *av[], t_stack *stacka)
     }
 }
 
-// void sort_alg(t_stack *stacka, t_stack *stackb)
-// {
-//     t_node *curente = stacka->top;
-//     t_node *next ;
-//     while (curente)
-//     {
-//         next = curente->next;
-//         while (next)
-//         {
-//             if (curente->value > next->value)
-//             {
-//                 int tmp;
-//                 int j;
-//                 printf("find %d\n",j);
-//                 j++;
-//                 tmp = curente->value;
-//                 curente->value = next->value;
-//                 next->value = tmp;
-//             }
-//             next = next->next;
-//         }
-//         curente = curente->next;
-//     }
-// }
-
-
-// int sortone(t_stack *stacka, t_stack *stackb)
-// {
-//     int i = 0;
-//     while (i < stacka->size - 1)
-//     {
-//         t_node *current = stacka->top;
-//         int max_value = current->value;
-//         int max_position = 0;
-//         int current_position = 0;
-
-//         // Find the maximum value and its position
-//         while (current)
-//         {
-//             if (current->value > max_value)
-//             {
-//                 max_value = current->value;
-//                 max_position = current_position;
-//             }
-//             current = current->next;
-//             current_position++;
-//         }
-
-//         // Rotate stacka to bring the maximum value to the top
-//         if (max_position <= stacka->size / 2)
-//         {
-//             // Use ra (rotate forward)
-//             for (int i = 0; i < max_position; i++)
-//                 ra(stacka);
-//         }
-//         else
-//         {
-//             // Use rra (rotate backward)
-//             for (int i = 0; i < stacka->size - max_position; i++)
-//                 rra(stacka);
-//         }
-
-//         // Push the maximum value to stackb
-//         pb(stacka, stackb);
-//         i++;
-//     }
-//     return 0; // Return a value to match the function signature
-// }
-
-
-
-int sortone(t_stack *stacka, t_stack *stackb)
-{
-    int i = 0;
-    while (i < stacka->size - 1 )
-    {
-        t_node *current = stacka->top;
-        int max_value = current->value;
-        int ctr = 1;
-        while(current)
-        {
-            if (max_value < current->value)
-            {
-                max_value = current->value;
-            }
-            current = current->next;
-        }
-        current = stacka->top;
-        while (current->value != max_value)
-        {
-            ctr++;
-            current = current->next;
-        }
-        int rotation = stacka->size - ctr;
-        if (rotation <= ctr)
-        {
-            while (rotation--)
-                ra(stacka);
-        }
-        else
-        {
-            rotation = ctr;
-            while (rotation--)
-                rra(stacka);
-        }
-        pb(stacka, stackb);
-        i++;
-    }
-    pb(stacka,stackb);
-    return (1);
-}
-
-
-// int get_maxval(t_stack *stack)
-// {
-//     t_node *current = stack->top;
-//     int max_value = current->value;
-//     while(current)
-//     {
-//         if (max_value < current->value)
-//             max_value = current->value;
-//         current = current->next;
-//     }
-//     return(max_value);
-// }
-
-// void insertionsort(t_stack *stacka, t_stack *stackb)
-// {
-//     while (stacka->top)
-//     {
-//         pb(stacka, stackb);
-//         stacka->size--;
-//         stackb->size++;
-//     }
-//     int max_value = get_maxval(stackb);
-//     while (stackb->top)
-//     {
-//         pa(stacka,stackb);
-//         stacka->size++;
-//         stackb->size--;
-        
-//         // printf("max : %d", max_value);
-
-//         while (stacka->top->next && stacka->top->value > max_value)
-//             ra(stacka);
-//         if (stacka->top->next && stacka->top->value > max_value)
-//             sa(stacka);
-//     }
-// }
 
 int main(int ac, char *av[])
 {
@@ -234,12 +92,12 @@ int main(int ac, char *av[])
 
     if (ac >= 2)
     {
-        handel_args(ac ,av, stacka);
-        // show_nbrs(stacka, 1);
-        
-        sortone(stacka, stackb);
+        handel_args(ac ,av, stacka);     
+        // sort_algo(stacka, stackb);
+
         printf("==========after=======\n");
-        show_nbrs(stackb, 0);
+        sort_algo(stacka,stackb);
+        // show_nbrs(stackb, 0);
         show_nbrs(stacka, 1);
 
     }
