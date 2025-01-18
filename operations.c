@@ -55,6 +55,8 @@ void pa(t_stack *stacka, t_stack *stackb)
         stackb->top = stackb->top->next;
         tempb->next = stacka->top;
         stacka->top = tempb;
+        stacka->size++;
+        stackb->size--;
         printf("pa\n");
     }
     else
@@ -70,6 +72,8 @@ void pb(t_stack *stacka, t_stack *stackb)
         stacka->top = stacka->top->next;
         tempa->next = stackb->top;
         stackb->top = tempa;
+        stacka->size--;
+        stackb->size++;
     }
     printf("pb\n");
 }

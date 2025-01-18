@@ -45,6 +45,7 @@ void rb(t_stack *stackb)
             ptr = ptr->next;
         ptr->next = tempb;
         ptr->next->next = NULL;
+        printf("rb\n");
     }
     else
         exit (1);
@@ -86,6 +87,7 @@ void rrb(t_stack *stackb)
         ptr->next = NULL;
         last_elm->next = stackb->top;
         stackb->top = last_elm;
+        printf("rrb\n");
     }
     else
         exit (1);
