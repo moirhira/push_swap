@@ -19,7 +19,7 @@ void sb(t_stack *stackb);
 void ss(t_stack *stacka, t_stack *stackb);
 void pa(t_stack *stacka, t_stack *stackb);
 void pb(t_stack *stacka, t_stack *stackb);
-int ra(t_stack *stacka);
+void ra(t_stack *stacka);
 void rb(t_stack *stackb);
 void rr(t_stack *stacka, t_stack *stackb);
 void rra(t_stack *stacka);

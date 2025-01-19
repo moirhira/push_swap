@@ -14,11 +14,11 @@
 #include "operations.h"
 
 
-int ra(t_stack *stacka)
+void ra(t_stack *stacka)
 {
     if (stacka->size < 2)
     {
-        return (-1);
+        exit(1);
     }
     t_node *tempa, *ptr;
     tempa = stacka->top;

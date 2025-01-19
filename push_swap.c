@@ -27,7 +27,7 @@ t_node *push(char *str, t_stack *stacka)
     return (stacka->top);
 }
 
-t_node  *show_nbrs(t_stack *stack, int f)
+void  show_nbrs(t_stack *stack, int f)
 {
     t_node *temp;
     temp = stack->top;
@@ -100,8 +100,8 @@ int main(int ac, char *av[])
         
         printf("---------------------\n");
         sort_algo(stacka,stackb);
-        // show_nbrs(stackb, 0);
-        // show_nbrs(stacka, 1);
+        show_nbrs(stackb, 0);
+        show_nbrs(stacka, 1);
 
     }
     else
