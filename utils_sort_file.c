@@ -25,13 +25,7 @@ int is_sorted(t_stack *stack)
             flag = 0;
             return (flag);
         }
-    }    //////  
-
-// 3
-// 2
-// 1
-
-
+    }
     return (flag);
 }
 

@@ -1,7 +1,7 @@
 NAME = push_swap
 SRC = operations.c operations2.c push_swap.c sortfile.c utils.c utils_sort_file.c
 OBJ = ${SRC.c=.o}
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra 
 CC = cc
 LIBFT_DIR = includes/libft
 LIBFT = $(LIBFT_DIR)/libft.a

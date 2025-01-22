@@ -12,43 +12,11 @@
 
 #include "push_swap.h"
 
-
-t_node *push(char *str, t_stack *stacka)
-{
-    t_node *new_number;
-
-    new_number = (t_node *)malloc(sizeof(t_node));
-    if (!new_number)
-        return(NULL);
-    new_number->value = ft_atoi(str);
-    new_number->next = stacka->top;
-    stacka->top = new_number;
-    stacka->size++;
-    return (stacka->top);
-}
-
-void  show_nbrs(t_stack *stack, int f)
-{
-    t_node *temp;
-    temp = stack->top;
-    while (stack->top)
-    {
-        printf("%d\n", stack->top->value);
-        stack->top = stack->top->next;
-    }
-    stack->top = temp;
-    printf("=\n");
-    if (f == 0)
-        printf("b\n");
-    else
-        printf("a\n");
-}
-
 void handel_args(int ac, char *av[], t_stack *stacka)
 {
-    int k = 1;
     char **nums;
-    while (k < ac)
+    int k = ac - 1;
+    while (k >= 1)
     {
         nums = ft_split(av[k], ' ');
         int i = 0;
@@ -66,7 +34,7 @@ void handel_args(int ac, char *av[], t_stack *stacka)
             push(nums[i], stacka);
             i++;            
         }
-        k++;
+        k--;
     }
     if (!check_duplicat(stacka))
     {
@@ -93,15 +61,11 @@ int main(int ac, char *av[])
     if (ac >= 2)
     {
         handel_args(ac ,av, stacka);     
-        // sort_algo(stacka, stackb);
-
-        // printf("==========after=======\n");
-        
-        
         printf("---------------------\n");
+
         sort_algo(stacka,stackb);
-        show_nbrs(stackb, 0);
-        show_nbrs(stacka, 1);
+        // show_nbrs(stacka, 1);
+        // show_nbrs(stackb, 0);
 
     }
     else

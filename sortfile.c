@@ -12,7 +12,7 @@
 #include "push_swap.h"
 #include "operations.h"
 
-void sort_one(t_stack *stacka, t_stack *stackb)
+void simple_sort(t_stack *stacka, t_stack *stackb)
 {
     if (stacka->size == 2)
         ra(stacka);
@@ -26,7 +26,7 @@ int sort_then(t_stack *stacka, t_stack *stackb)
 {
     while (stacka->size > 0)
         pb(stacka,stackb);
-    
+
     while (stackb->size > 0)
     {
         int max_value = stackb->top->value;
@@ -64,82 +64,65 @@ int sort_then(t_stack *stacka, t_stack *stackb)
 
 int choose_pivot(t_stack *stacka)
 {
-    
-    if (stacka->size < 3)
-        return stacka->top->value;
-
-    int first = stacka->top->value;
-
-    t_node *middle_node = stacka->top;
-    for (int i = 0; i < stacka->size / 2; i++) {
-        middle_node = middle_node->next;
+    int k = 0 ;
+    t_node *ptr = stacka->top;
+    int array[stacka->size];  
+    while (ptr != NULL)
+    {
+        array[k] = ptr->value;
+        ptr = ptr->next;
+        k++;
     }
-    int middle = middle_node->value;
-
-    t_node *last_node = stacka->top;
-    while (last_node->next != NULL) {
-        last_node = last_node->next;
-    }
-    int last = last_node->value;
-
-    if ((first >= middle && first <= last) || (first <= middle && first >= last))
-        return first;
-    if ((middle >= first && middle <= last) || (middle <= first && middle >= last))
-        return middle;
-    return last;
-}
-
-// void partition(t_stack *stacka, t_stack *stackb, int pivot)
-// {
-//     int size = stacka->size;
-//     int i = 0;
-//     while (i < size)
-//     {
-//         if (stacka->top->value <= pivot)
-//             pb(stacka, stackb);
-//         // else if (stacka->top->next->next->value > pivot)
-//         //     rra(stacka);
-//         else
-//             ra(stacka); 
-//         i++;
-//     }
-// }
-void partition(t_stack *stacka, t_stack *stackb, int pivot) {
-    int rotations = 0;
     int i = 0;
-    int size = stacka->size;
-    while (i < size) {
-        if (stacka->top->value <= pivot) {
-            pb(stacka, stackb); 
-        } else {
-            ra(stacka); 
-            rotations++;
+    while (i < stacka->size - 1)
+    {
+        int j = 0;
+        while (j < stacka->size - i - 1)
+        {
+            if (array[j] > array[j + 1])
+            {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+            j++;
         }
         i++;
     }
-
-    while (rotations--) {
-        rra(stacka);
-    }
+    int pivot = array[stacka->size / 2];
+    return pivot;
 }
 
+void partition(t_stack *stacka, t_stack *stackb, int pivot)
+{
+    int size = stacka->size;
+    int i = 0;
+    while (i < size)
+    {
+        if (stacka->top->value <= pivot)
+            pb(stacka,stackb);
+        else
+            ra(stacka);
+        i++;
+    }
+    
+}
 void quick_sort(t_stack *stacka, t_stack *stackb)
 {
     if (stacka->size <= 8)
     {
-        printf("here\n");
-        sort_then(stacka, stackb); 
+        sort_then(stacka,stackb);
         return;
     }
-
-    int pivot = stacka->top->value;
+    
+    int pivot;
+    pivot = choose_pivot(stacka);
     partition(stacka, stackb, pivot);
-
-    quick_sort(stacka, stackb);
-
+    
+    quick_sort(stacka,stackb);
+    // quick_sort(stackb,stacka);
     while (stackb->top)
-        pa(stacka, stackb);
-
+        pa(stacka,stackb);
 }
 
 
@@ -150,7 +133,7 @@ void sort_algo(t_stack *satcka, t_stack *satckb)
     else
     {
         if (satcka->size < 6)
-            sort_one(satcka,satckb);
+            simple_sort(satcka,satckb);
         else if (satcka->size >= 6)
         {
             quick_sort(satcka, satckb);

@@ -79,3 +79,36 @@ void free_spl(char **nums)
     }
     free(nums); 
 }
+
+
+
+t_node *push(char *str, t_stack *stacka)
+{
+    t_node *new_number;
+
+    new_number = (t_node *)malloc(sizeof(t_node));
+    if (!new_number)
+        return(NULL);
+    new_number->value = ft_atoi(str);
+    new_number->next = stacka->top;
+    stacka->top = new_number;
+    stacka->size++;
+    return (stacka->top);
+}
+
+void  show_nbrs(t_stack *stack, int f)
+{
+    t_node *temp;
+    temp = stack->top;
+    while (stack->top)
+    {
+        printf("%d\n", stack->top->value);
+        stack->top = stack->top->next;
+    }
+    stack->top = temp;
+    printf("=\n");
+    if (f == 0)
+        printf("b\n");
+    else
+        printf("a\n");
+}
