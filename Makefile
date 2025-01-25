@@ -1,5 +1,5 @@
 NAME = push_swap
-SRC = operations.c operations2.c push_swap.c sortfile.c utils.c utils_sort_file.c
+SRC = operations.c operations2.c push_swap.c sortfile.c utils.c utils_sort_file.c complicated_sort.c
 OBJ = ${SRC.c=.o}
 CFLAGS = -Wall -Wextra 
 CC = cc

@@ -61,11 +61,10 @@ int main(int ac, char *av[])
     if (ac >= 2)
     {
         handel_args(ac ,av, stacka);     
-        printf("---------------------\n");
 
         sort_algo(stacka,stackb);
-        // show_nbrs(stacka, 1);
-        // show_nbrs(stackb, 0);
+        show_nbrs(stacka, 1);
+        show_nbrs(stackb, 0);
 
     }
     else

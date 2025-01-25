@@ -53,6 +53,7 @@ void rb(t_stack *stackb)
 
 void rr(t_stack *stacka, t_stack *stackb)
 {
+    if (!stacka || !stackb) return;
     ra(stacka);
     rb(stackb);
 }
@@ -95,6 +96,7 @@ void rrb(t_stack *stackb)
 
 void rrr(t_stack *stacka, t_stack *stackb)
 {
+    if (!stacka || !stackb) return;
     rra(stacka);
     rrb(stackb);
 }

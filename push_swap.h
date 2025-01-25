@@ -38,9 +38,17 @@ int check_duplicat(t_stack *stacka);
 void free_spl(char **nums);
 // sortfile && his utils =========================
 void sort_algo(t_stack *satcka, t_stack *satckb);
+int calculate_cost(t_stack *stacka, t_stack *stackb,int nbr);
+int find_place_b(t_stack *stackb,int number);
+int find_index(t_stack *stack, int nbr);
+int find_cheapest(t_stack *stack_a, t_stack *stack_b);
+void push_cheapest(t_stack *stack_a, t_stack *stack_b);
 int is_sorted(t_stack *stack);
+void final_rotation(t_stack *stack_a);
 void sort_three(t_stack *stacka);
 int get_min(t_stack *stack , int *f);
+int find_max(t_stack *stack);
+int find_min(t_stack *stack);
 void sortonfour(t_stack *stacka, t_stack *stackb);
 //================================================
 
