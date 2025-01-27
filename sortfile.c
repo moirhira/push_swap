@@ -24,19 +24,12 @@ void simple_sort(t_stack *stacka, t_stack *stackb)
 
 void sort_complicated(t_stack *stacka, t_stack *stackb)
 {
-    // if (stacka->size < 2) return;
-    pb(stacka,stackb);
-    pb(stacka,stackb);
-    pb(stacka,stackb);
-    sort_three(stackb);
-
     while (stacka->size > 3)
-    {
-        push_cheapest(stacka,stackb);
-    }
+        pb(stacka,stackb);
     sort_three(stacka);
+
     while (stackb->size > 0)
-        pa(stacka,stackb);
+        push_cheapest(stacka,stackb);
     final_rotation(stacka);
 }
 
@@ -53,6 +46,8 @@ void sort_algo(t_stack *satcka, t_stack *satckb)
         {
             sort_complicated(satcka, satckb);
         }
+        if (is_sorted(satcka))
+            printf("sorted!\n");
     }
 }
 

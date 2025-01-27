@@ -63,9 +63,8 @@ int main(int ac, char *av[])
         handel_args(ac ,av, stacka);     
 
         sort_algo(stacka,stackb);
-        show_nbrs(stacka, 1);
-        show_nbrs(stackb, 0);
-
+        // show_nbrs(stacka, 1);
+        // show_nbrs(stackb, 0);
     }
     else
     {

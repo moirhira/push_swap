@@ -56,6 +56,7 @@ void rr(t_stack *stacka, t_stack *stackb)
     if (!stacka || !stackb) return;
     ra(stacka);
     rb(stackb);
+    printf("rr\n");
 }
 
 void rra(t_stack *stacka)
