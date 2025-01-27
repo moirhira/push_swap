@@ -14,6 +14,8 @@
 
 int is_sorted(t_stack *stack)
 {
+    if(!stack || !stack->top)
+        return(0);
     int flag = 1;
     t_node *curent = stack->top;
     while (curent->next)
@@ -112,7 +114,10 @@ void sortonfour(t_stack *stacka, t_stack *stackb)
         while(stacka->top->value != min)
         {
             if (f == 1)
+            {
                 ra(stacka);
+                printf("ra\n");
+            }
             else
                 rra(stacka);
         }

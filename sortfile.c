@@ -15,7 +15,10 @@
 void simple_sort(t_stack *stacka, t_stack *stackb)
 {
     if (stacka->size == 2)
+    {
         ra(stacka);
+        printf("ra\n");
+    }
     else if (stacka->size == 3)
         sort_three(stacka);
     else if (stacka->size >= 4 )
@@ -41,13 +44,15 @@ void sort_algo(t_stack *satcka, t_stack *satckb)
     else
     {
         if (satcka->size < 6)
+        {
             simple_sort(satcka,satckb);
+        }
         else if (satcka->size >= 6)
         {
             sort_complicated(satcka, satckb);
         }
-        if (is_sorted(satcka))
-            printf("sorted!\n");
+        // if (is_sorted(satcka))
+        //     printf("sorted\n");
     }
 }
 

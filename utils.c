@@ -19,6 +19,8 @@
 
 int is_integer(char *str)
 {
+    if (*str == '\0' || str == NULL)
+        return (0);
     if (*str == '+' || *str == '-')
         str++;
     if (*str == '\0')
@@ -33,15 +35,22 @@ int is_integer(char *str)
     return (1);
 }
 
-void free_stack(t_stack *stacka) {
-    t_node *current = stacka->top;
+void free_stack(t_stack **stacka)
+{
+    t_node *current;
     t_node *next;
+
+    if (!stacka || !*stacka)
+        return;
+    
+    current = (*stacka)->top;
     while (current) {
         next = current->next;
         free(current);
         current = next;
     }
-    free(stacka);
+    free(*stacka);
+    *stacka = NULL;
 }
 
 int check_duplicat(t_stack *stacka)

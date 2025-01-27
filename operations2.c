@@ -30,7 +30,7 @@ void ra(t_stack *stacka)
     }
     ptr->next = tempa;
     ptr->next->next = NULL;
-    printf("ra\n");
+    // printf("ra\n");
 }
 
 void rb(t_stack *stackb)
@@ -45,7 +45,7 @@ void rb(t_stack *stackb)
             ptr = ptr->next;
         ptr->next = tempb;
         ptr->next->next = NULL;
-        printf("rb\n");
+        // printf("rb\n");
     }
     else
         exit (1);

@@ -1,7 +1,7 @@
 import random
 
 # Generate 20 unique random numbers
-random_numbers = random.sample(range(-100, 100), 100)
+random_numbers = random.sample(range(-100, 1000), 100)
 
 # Join them with spaces
 output = " ".join(map(str, random_numbers))
