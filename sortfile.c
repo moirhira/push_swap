@@ -12,6 +12,25 @@
 #include "push_swap.h"
 #include "operations.h"
 
+int is_sorted(t_stack *stack)
+{
+    if(!stack || !stack->top)
+        return(0);
+    int flag = 1;
+    t_node *curent = stack->top;
+    while (curent->next)
+    {
+        if (curent->value < curent->next->value)
+            curent = curent->next;
+        else
+        {
+            flag = 0;
+            return (flag);
+        }
+    }
+    return (flag);
+}
+
 void simple_sort(t_stack *stacka, t_stack *stackb)
 {
     if (stacka->size == 2)
@@ -51,8 +70,8 @@ void sort_algo(t_stack *satcka, t_stack *satckb)
         {
             sort_complicated(satcka, satckb);
         }
-        // if (is_sorted(satcka))
-        //     printf("sorted\n");
+        if (is_sorted(satcka))
+            printf("sorted!\n");
     }
 }
 

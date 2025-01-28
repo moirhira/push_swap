@@ -53,7 +53,7 @@ void free_stack(t_stack **stacka)
     *stacka = NULL;
 }
 
-int check_duplicat(t_stack *stacka)
+int check_duplicat(t_stack *stacka, t_stack *stackb)
 {
     t_node  *in_number;
     t_node  *next_number;
@@ -65,6 +65,10 @@ int check_duplicat(t_stack *stacka)
         {
             if (in_number->value == next_number->value)
             {
+                printf("Error\n");
+                free_stack(&stacka);
+                free_stack(&stackb);
+                exit(1);
                 return (0);
             }
             next_number = next_number->next;
@@ -94,14 +98,26 @@ void free_spl(char **nums)
 t_node *push(char *str, t_stack *stacka)
 {
     t_node *new_number;
+    t_node *ptr;
 
     new_number = (t_node *)malloc(sizeof(t_node));
     if (!new_number)
         return(NULL);
     new_number->value = ft_atoi(str);
-    new_number->next = stacka->top;
-    stacka->top = new_number;
-    stacka->size++;
+    new_number->next = NULL;
+    if (stacka->top == NULL)
+    {
+        stacka->top = new_number;
+        stacka->size++;
+    }
+    else
+    {
+        ptr = stacka->top;
+        while (ptr->next)
+            ptr = ptr->next;
+        ptr->next = new_number;
+        stacka->size++;
+    }
     return (stacka->top);
 }
 

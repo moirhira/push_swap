@@ -34,7 +34,7 @@ t_node *push(char *str, t_stack *stacka);
 void  show_nbrs(t_stack *stack, int f);
 int is_integer(char *str);
 void free_stack(t_stack **stacka);
-int check_duplicat(t_stack *stacka);
+int check_duplicat(t_stack *stacka,t_stack *stackb);
 void free_spl(char **nums);
 // sortfile && his utils =========================
 void sort_algo(t_stack *satcka, t_stack *satckb);

@@ -24,6 +24,6 @@ void rb(t_stack *stackb);
 void rr(t_stack *stacka, t_stack *stackb);
 void rra(t_stack *stacka);
 void rrb(t_stack *stackb);
-void rrr(t_stack *stacka, t_stack *stackb);
+// void rrr(t_stack *stacka, t_stack *stackb);
 
 #endif

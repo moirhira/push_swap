@@ -21,35 +21,34 @@ static char	**free_split(char **res, size_t indx)
 	free(res);
 	return (NULL);
 }
+
 void handel_args(int ac, char *av[], t_stack *stacka, t_stack *stackb)
 {
     char **nums;
-    int k = ac - 1;
-    while (k >= 1)
+    int (k),(i);
+    k = 1;
+    while (k < ac)
     {
         nums = ft_split(av[k], ' ');
-        int i = 0;
-
+        i = 0;
         while (nums[i])
         {
             long num = ft_atoi(nums[i]);
-            if (!is_integer(nums[i]) || num > 2147483647 || num < -2147483648 || ft_strlen(av[1]) == 0)
-                printf("Error from integer validation\n");
-            printf("num = %s\n",nums[i]);
+            if (!is_integer(nums[i]) || num > 2147483647 || num < -2147483648)
+            {
+                printf("Error\n");
+                free_stack(&stacka);
+                free_stack(&stackb);
+                free_spl(nums);
+                exit(1);
+            }
             push(nums[i], stacka);
-
             i++;            
         }
-        k--;
+        k++;
         free_split(nums, i);
     }
-    if (!check_duplicat(stacka))
-    {
-        printf("Error from duplication\n");
-        free_stack(&stacka);
-        free_stack(&stackb);
-        exit(1);
-    }
+    check_duplicat(stacka,stackb);
 }
 
 
@@ -68,11 +67,11 @@ int main(int ac, char *av[])
     if (ac >= 2)
     {
         handel_args(ac ,av, stacka, stackb);     
-        // sort_algo(stacka,stackb);
-        show_nbrs(stacka,1);
+        sort_algo(stacka,stackb);
+        // show_nbrs(stacka,1);
     }
     else
-        printf("Error from number args\n");
+        printf("Error\n");
     free_stack(&stacka);
     free_stack(&stackb);
 }

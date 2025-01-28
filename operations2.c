@@ -30,7 +30,6 @@ void ra(t_stack *stacka)
     }
     ptr->next = tempa;
     ptr->next->next = NULL;
-    // printf("ra\n");
 }
 
 void rb(t_stack *stackb)
@@ -45,7 +44,6 @@ void rb(t_stack *stackb)
             ptr = ptr->next;
         ptr->next = tempb;
         ptr->next->next = NULL;
-        // printf("rb\n");
     }
     else
         exit (1);
@@ -95,9 +93,9 @@ void rrb(t_stack *stackb)
         exit (1);
 }
 
-void rrr(t_stack *stacka, t_stack *stackb)
-{
-    if (!stacka || !stackb) return;
-    rra(stacka);
-    rrb(stackb);
-}
+// void rrr(t_stack *stacka, t_stack *stackb)
+// {
+//     if (!stacka || !stackb) return;
+//     rra(stacka);
+//     rrb(stackb);
+// }
