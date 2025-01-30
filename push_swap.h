@@ -13,9 +13,9 @@
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "includes/libft/libft.h"
+#include "includes/printf/ft_printf.h"
 
 typedef struct s_node
 {
@@ -31,11 +31,12 @@ typedef struct s_stack
 } t_stack;
 
 t_node *push(char *str, t_stack *stacka);
-void  show_nbrs(t_stack *stack, int f);
 int is_integer(char *str);
 void free_stack(t_stack **stacka);
 int check_duplicat(t_stack *stacka,t_stack *stackb);
 void free_spl(char **nums);
+static char	**free_split(char **res, size_t indx);
+void free_handel(t_stack *stacka, t_stack *stackb, char **nums);
 // sortfile && his utils =========================
 void sort_algo(t_stack *satcka, t_stack *satckb);
 int calculate_cost(t_stack *stacka, t_stack *stackb,int nbr);

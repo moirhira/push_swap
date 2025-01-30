@@ -10,12 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "includes/libft/ft_isdigit.c"
-#include "includes/libft/ft_split.c"
-#include "includes/libft/ft_atoi.c"
-
 
 int is_integer(char *str)
 {
@@ -42,9 +36,9 @@ void free_stack(t_stack **stacka)
 
     if (!stacka || !*stacka)
         return;
-    
     current = (*stacka)->top;
-    while (current) {
+    while (current)
+    {
         next = current->next;
         free(current);
         current = next;
@@ -57,6 +51,7 @@ int check_duplicat(t_stack *stacka, t_stack *stackb)
 {
     t_node  *in_number;
     t_node  *next_number;
+
     in_number = stacka->top;
     while (in_number)
     {
@@ -65,7 +60,7 @@ int check_duplicat(t_stack *stacka, t_stack *stackb)
         {
             if (in_number->value == next_number->value)
             {
-                printf("Error\n");
+                write(2,"Error\n",6);;
                 free_stack(&stacka);
                 free_stack(&stackb);
                 exit(1);
@@ -80,11 +75,11 @@ int check_duplicat(t_stack *stacka, t_stack *stackb)
 
 void free_spl(char **nums)
 {
-    int i = 0;
+    int i;
 
+    i  = 0;
     if (!nums)
         return;
-
     while (nums[i])
     {
         free(nums[i]);
@@ -92,8 +87,6 @@ void free_spl(char **nums)
     }
     free(nums); 
 }
-
-
 
 t_node *push(char *str, t_stack *stacka)
 {
@@ -119,21 +112,4 @@ t_node *push(char *str, t_stack *stacka)
         stacka->size++;
     }
     return (stacka->top);
-}
-
-void  show_nbrs(t_stack *stack, int f)
-{
-    t_node *temp;
-    temp = stack->top;
-    while (stack->top)
-    {
-        printf("%d\n", stack->top->value);
-        stack->top = stack->top->next;
-    }
-    stack->top = temp;
-    printf("=\n");
-    if (f == 0)
-        printf("b\n");
-    else
-        printf("a\n");
 }

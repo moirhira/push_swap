@@ -26,10 +26,13 @@ void sort_three(t_stack *stacka)
 
 int get_min(t_stack *stack , int *f)
 {
-    int i = 0;
-    int min_index = 0;
-    int min = stack->top->value;
-    t_node *current = stack->top;
+    int (i),(min_index),(min);
+    t_node *current;
+
+    i = 0;
+    min_index = 0;
+    min = stack->top->value;
+    current = stack->top;
     while(current)
     {
         if (min > current->value)
@@ -49,25 +52,25 @@ int get_min(t_stack *stack , int *f)
 
 void sortonfour(t_stack *stacka, t_stack *stackb)
 {
-    int f;
-    int i = 0;
-    int rep = 2;
+    int (f),(i),(rep);
+
+    i = 0;
+    rep = 2;
     if (stacka->size == 4)
         rep = 1;
     while (i < rep)
     {
-        int min = get_min(stacka, &f);
-        while(stacka->top->value != min)
+        while(stacka->top->value != get_min(stacka, &f))
         {
             if (f == 1)
             {
                 ra(stacka);
-                printf("ra\n");
+                ft_printf("ra\n");
             }
             else
                 rra(stacka);
         }
-        if (stacka->top->value == min)
+        if (stacka->top->value == get_min(stacka, &f))
             pb(stacka,stackb);
         i++;
     }
@@ -78,9 +81,12 @@ void sortonfour(t_stack *stacka, t_stack *stackb)
 
 int find_max(t_stack *stack)
 {
-    int i = 0;
-    int max = stack->top->value;
-    t_node *current = stack->top;
+    int (i),(max);
+    t_node *current;
+
+    i = 0;
+    max = stack->top->value;
+    current = stack->top;
     while(current)
     {
         if (max < current->value)
@@ -95,9 +101,12 @@ int find_max(t_stack *stack)
 
 int find_min(t_stack *stack)
 {
-    int i = 0;
-    int min = stack->top->value;
-    t_node *current = stack->top;
+    int (i),(min);
+    t_node *current;
+
+    i = 0;
+    min = stack->top->value;
+    current = stack->top;
     while(current)
     {
         if (min > current->value)

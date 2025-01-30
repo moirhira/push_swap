@@ -21,7 +21,7 @@ void sa(t_stack *stacka)
         temp = stacka->top->value;
         stacka->top->value = stacka->top->next->value;
         stacka->top->next->value = temp;
-        printf("sa\n");
+        ft_printf("sa\n");
     }
     else
         exit(1);
@@ -35,6 +35,7 @@ void sb(t_stack *stackb)
         temp = stackb->top->value;
         stackb->top->value = stackb->top->next->value;
         stackb->top->next->value = temp;
+        ft_printf("sb\n");
     }
     else
         exit (0);
@@ -44,6 +45,7 @@ void ss(t_stack *stacka, t_stack *stackb)
 {
     sa(stacka);
     sb(stackb);
+    ft_printf("ss\n");
 }
 
 void pa(t_stack *stacka, t_stack *stackb)
@@ -57,7 +59,7 @@ void pa(t_stack *stacka, t_stack *stackb)
         stacka->top = tempb;
         stacka->size++;
         stackb->size--;
-        printf("pa\n");
+        ft_printf("pa\n");
     }
     else
         exit(1);
@@ -75,6 +77,6 @@ void pb(t_stack *stacka, t_stack *stackb)
         stacka->size--;
         stackb->size++;
     }
-    printf("pb\n");
+    ft_printf("pb\n");
 }
 

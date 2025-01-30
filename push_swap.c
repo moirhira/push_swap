@@ -22,10 +22,20 @@ static char	**free_split(char **res, size_t indx)
 	return (NULL);
 }
 
+void free_handel(t_stack *stacka, t_stack *stackb, char **nums)
+{
+    write(2,"Error\n",6);
+    free_stack(&stacka);
+    free_stack(&stackb);
+    free_spl(nums);
+    exit(1);
+}
+
 void handel_args(int ac, char *av[], t_stack *stacka, t_stack *stackb)
 {
     char **nums;
     int (k),(i);
+
     k = 1;
     while (k < ac)
     {
@@ -35,13 +45,7 @@ void handel_args(int ac, char *av[], t_stack *stacka, t_stack *stackb)
         {
             long num = ft_atoi(nums[i]);
             if (!is_integer(nums[i]) || num > 2147483647 || num < -2147483648)
-            {
-                printf("Error\n");
-                free_stack(&stacka);
-                free_stack(&stackb);
-                free_spl(nums);
-                exit(1);
-            }
+                free_handel(stacka,stackb,nums);
             push(nums[i], stacka);
             i++;            
         }
@@ -68,10 +72,9 @@ int main(int ac, char *av[])
     {
         handel_args(ac ,av, stacka, stackb);     
         sort_algo(stacka,stackb);
-        // show_nbrs(stacka,1);
     }
     else
-        printf("Error\n");
+        write(2,"Error\n",6);
     free_stack(&stacka);
     free_stack(&stackb);
 }
