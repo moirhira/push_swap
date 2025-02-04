@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moirhira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 20:32:42 by moirhira          #+#    #+#             */
-/*   Updated: 2025/01/09 20:32:46 by moirhira         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:20:05 by moirhira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-int	is_inteeger(char *str)
+int	is_integer(char *str)
 {
 	if (*str == '+' || *str == '-')
 		str++;
@@ -62,6 +62,7 @@ int	check_duplicat(t_stack *stacka, t_stack *stackb)
 				free_stack(&stacka);
 				free_stack(&stackb);
 				exit(1);
+				return (0);
 			}
 			next_number = next_number->next;
 		}

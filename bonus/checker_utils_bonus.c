@@ -1,35 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sortfile_complicated_utils2.c                      :+:      :+:    :+:   */
+/*   checker_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moirhira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 13:42:09 by moirhira          #+#    #+#             */
-/*   Updated: 2025/02/01 18:47:05 by moirhira         ###   ########.fr       */
+/*   Created: 2025/01/31 09:51:37 by moirhira          #+#    #+#             */
+/*   Updated: 2025/02/01 12:20:35 by moirhira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "operations.h"
-#include "push_swap.h"
 
-void	final_rotation(t_stack *stack_a)
+#include "checker_bonus.h"
+
+char	**free_split(char **res, size_t indx)
 {
-	int	max_index;
+	while (indx > 0)
+	{
+		free(res[--indx]);
+	}
+	free(res);
+	return (NULL);
+}
 
-	max_index = find_index(stack_a, find_min(stack_a));
-	if (max_index <= stack_a->size / 2)
+void	free_handel(t_stack *stacka, t_stack *stackb, char **nums)
+{
+	write(2, "Error\n", 6);
+	free_stack(&stacka);
+	free_stack(&stackb);
+	free_spl(nums);
+	exit(1);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 != '\0' || *s2 != '\0')
 	{
-		while (max_index-- > 0)
+		if (*s1 != *s2)
 		{
-			rotate(stack_a);
-			ft_printf("ra\n");
+			return ((unsigned char)*s1 - (unsigned char)*s2);
 		}
+		s1++;
+		s2++;
 	}
-	else
-	{
-		while (max_index++ < stack_a->size)
-			rra(stack_a);
-	}
+	return (0);
 }
 
 int	is_sorted(t_stack *stack)
@@ -54,19 +67,18 @@ int	is_sorted(t_stack *stack)
 	return (flag);
 }
 
-int	find_index(t_stack *stack, int nbr)
+int	is_only_whitespace(char *str)
 {
-	int			index;
-	t_node		*tmp;
-
-	index = 0;
-	tmp = stack->top;
-	while (tmp)
+	if (str[0] == '\0')
+		return (0);
+	while (*str)
 	{
-		if (tmp->value == nbr)
-			return (index);
-		index++;
-		tmp = tmp->next;
+		if (*str == ' ' || (*str >= 9 && *str <= 13))
+			str++;
+		else
+			return (1);
 	}
-	return (-1);
+	if (ft_isdigit(*str))
+		return (1);
+	return (0);
 }

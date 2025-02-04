@@ -76,28 +76,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (n);
 }
-//  int main()
-// {
-//     int num = 42;
-//     void *ptr = &num;
-//     printf("%");
-//     ft_printf("test c min : %c\n", 'x');
-//     printf("test s lib : %s\n", "hello");
-//     ft_printf("test s min : %s\n", "hello");
-//     printf("%d\n",printf("test p lib : %p\n", NULL));
-//     printf("%d\n",ft_printf("test p min : %p\n", NULL));
-//     printf("test d lib : %d\n", 1337);
-//     ft_printf("test d min : %d\n", 1337);
-//     printf("test i lib : %i\n", 42);
-//     ft_printf("test i min : %i\n", 42);
-//     printf("test u lib : %u\n", -42);
-//     ft_printf("test u min : %u\n", -42);
-//     printf("test x lib : %x\n", 2020);
-//     ft_printf("test x min : %x\n", 2020);
-//     printf("test X lib : %X\n", 2024);
-//     ft_printf("test X min : %X\n", 2024);
-//     printf("test prsnt lib : %%\n", "any way");
-//     ft_printf("test prsnt min : %%\n", "any way");
-	// printf("%d\n",ft_printf("hh%"));
-	// printf("%d\n",printf("hh%"));
-// }

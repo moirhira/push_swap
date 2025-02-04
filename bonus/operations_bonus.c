@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moirhira <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moirhira <moirhira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 20:33:23 by moirhira          #+#    #+#             */
-/*   Updated: 2025/01/09 20:33:25 by moirhira         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:37:02 by moirhira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "operations.h"
-#include "push_swap.h"
 
-void	sa(t_stack *stacka)
+#include "checker_bonus.h"
+
+void	swap(t_stack *stack)
 {
-	int		temp;
+	int	temp;
 
-	if (stacka->top != NULL)
+	if (stack->top != NULL)
 	{
-		temp = stacka->top->value;
-		stacka->top->value = stacka->top->next->value;
-		stacka->top->next->value = temp;
-		ft_printf("sa\n");
-	}
-	else
-		exit(1);
-}
-
-void	sb(t_stack *stackb)
-{
-	int		temp;
-
-	if (stackb->top != NULL)
-	{
-		temp = stackb->top->value;
-		stackb->top->value = stackb->top->next->value;
-		stackb->top->next->value = temp;
-		ft_printf("sb\n");
+		temp = stack->top->value;
+		stack->top->value = stack->top->next->value;
+		stack->top->next->value = temp;
 	}
 	else
 		exit(0);
@@ -44,14 +28,13 @@ void	sb(t_stack *stackb)
 
 void	ss(t_stack *stacka, t_stack *stackb)
 {
-	sa(stacka);
-	sb(stackb);
-	ft_printf("ss\n");
+	swap(stacka);
+	swap(stackb);
 }
 
 void	pa(t_stack *stacka, t_stack *stackb)
 {
-	t_node		*tempb;
+	t_node	*tempb;
 
 	if (stackb->top != NULL)
 	{
@@ -61,15 +44,12 @@ void	pa(t_stack *stacka, t_stack *stackb)
 		stacka->top = tempb;
 		stacka->size++;
 		stackb->size--;
-		ft_printf("pa\n");
 	}
-	else
-		exit(1);
 }
 
 void	pb(t_stack *stacka, t_stack *stackb)
 {
-	t_node		*tempa;
+	t_node	*tempa;
 
 	if (stacka->top != NULL)
 	{
@@ -80,5 +60,12 @@ void	pb(t_stack *stacka, t_stack *stackb)
 		stacka->size--;
 		stackb->size++;
 	}
-	ft_printf("pb\n");
+}
+
+void	rrr(t_stack *stacka, t_stack *stackb)
+{
+	if (!stacka || !stackb)
+		return ;
+	rra(stacka);
+	rrb(stackb);
 }

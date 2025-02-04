@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complicated_sort.c                                 :+:      :+:    :+:   */
+/*   sortfile_complicated_utils.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moirhira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:42:09 by moirhira          #+#    #+#             */
-/*   Updated: 2025/01/24 13:42:11 by moirhira         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:46:55 by moirhira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "operations.h"
 #include "push_swap.h"
 
-
 int	find_place_in_a(t_stack *stack_a, int nbr)
 {
-	int(max), (min), (place);
-	t_node(*tmp), (*tmp1);
+	t_node	*tmp;
+	t_node	*tmp1;
 
+	int (max), (min), (place);
 	place = 0;
 	tmp = stack_a->top;
 	tmp1 = stack_a->top;
@@ -41,8 +41,7 @@ int	find_place_in_a(t_stack *stack_a, int nbr)
 
 int	calculate_cost(t_stack *stack_a, t_stack *stack_b, int nbr)
 {
-	int(cost_b), (cost_a), (rotate_both);
-
+	int (cost_b), (cost_a), (rotate_both);
 	cost_b = find_index(stack_b, nbr);
 	cost_a = find_place_in_a(stack_a, nbr);
 	if (cost_b <= stack_b->size / 2 && cost_a <= stack_a->size / 2)
@@ -69,8 +68,8 @@ int	calculate_cost(t_stack *stack_a, t_stack *stack_b, int nbr)
 int	find_cheapest(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*tmp;
-	int(cheapest_nbr), (cheapest_cost), (current_cost);
-	
+
+	int (cheapest_nbr), (cheapest_cost), (current_cost);
 	tmp = stack_b->top;
 	cheapest_nbr = tmp->value;
 	cheapest_cost = calculate_cost(stack_a, stack_b, tmp->value);
@@ -87,17 +86,19 @@ int	find_cheapest(t_stack *stack_a, t_stack *stack_b)
 	return (cheapest_nbr);
 }
 
-void push_cheapset_helper(int cost_a, t_stack *stack_a)
+void	push_cheapset_helper(int cost_a, t_stack *stack_a)
 {
-    if (cost_a <= stack_a->size / 2)
-        while (cost_a-- > 0)
-        {
-            ra(stack_a);
-            ft_printf("ra\n");
-        }
-    else
-        while (cost_a++ < stack_a->size)
-            rra(stack_a);
+	if (cost_a <= stack_a->size / 2)
+	{
+		while (cost_a-- > 0)
+		{
+			rotate(stack_a);
+			ft_printf("ra\n");
+		}
+	}
+	else
+		while (cost_a++ < stack_a->size)
+			rra(stack_a);
 }
 
 void	push_cheapest(t_stack *stack_a, t_stack *stack_b)
@@ -114,16 +115,17 @@ void	push_cheapest(t_stack *stack_a, t_stack *stack_b)
 		cost_b--;
 		cost_a--;
 	}
-	 if (cost_b <= stack_b->size / 2)
-        while (cost_b-- > 0)
-        {
-            rb(stack_b);
-            ft_printf("rb\n");
-        }
-    else
-        while (cost_b++ < stack_b->size)
-            rrb(stack_b);
-    push_cheapset_helper(cost_a,stack_a);
+	if (cost_b <= stack_b->size / 2)
+	{
+		while (cost_b--)
+		{
+			rotate(stack_b);
+			ft_printf("rb\n");
+		}
+	}
+	else
+		while (cost_b++ < stack_b->size)
+			rrb(stack_b);
+	push_cheapset_helper(cost_a, stack_a);
 	pa(stack_a, stack_b);
 }
-
